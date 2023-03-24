@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Title of the document</title>
+  </head>
+  <body>
+    <div style="width:100%; height:8%">
+        <button style="margin:0px; padding:0px; width:9%; height:100%" onclick="send_comment();window.location.href='/?id={{(id-1 + total) % total}}'">last</button>
+        <input style="font-size: 24px; width:80%; height:100%" id="comments", value="{{comment}}">
+        <button style="margin:0px; padding:0px; width:9%; height:100%" onclick="send_comment();window.location.href='/?id={{(id+1 + total) % total}}'">last</button>
+    </div>
+    <iframe src="{{filename}}#toolbar=0" width="100%" height="91%"></iframe>
+  </body>
+</html>
+
+<script src="/static/jquery-3.6.3.min.js"></script>
+<script>
+  function debounce(func, delay = 500) {
+    let timer = null;
+  
+    return function(...args) {
+      let context = this;
+  
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    }
+  }
+
+  function send_comment() {
+      $.post("/comment", {filename: "{{filename}}", comment: $("#comments").val()})
+  }
+
+  $("#comments").on("change", debounce(send_comment))
+
+</script>
