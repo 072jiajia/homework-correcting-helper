@@ -1,11 +1,13 @@
 # homework-correcting-helper
 
-# Notice
+This is a project which can help you TAs correct homework more convenient.
+
+## Notice
 
 - I will make it clean and more flexible later, so don't complain about my coding style now
 - Co-editors are welcome
 
-# How to Run it
+## How to Run it
 
 Set your data paths as the following structure
 ```
